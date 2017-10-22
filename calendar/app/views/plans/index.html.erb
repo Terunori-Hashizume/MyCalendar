@@ -1,0 +1,81 @@
+<div class="leftBlock">
+  <div class="calender">
+    <!-- 年と月を表示 -->
+    <h2><%= @selectedDate.year %>年 <%= @selectedDate.month %>月</h2>
+    <table>
+      <tr>
+        <th class="sunday">日</th>
+        <th>月</th>
+        <th>火</th>
+        <th>水</th>
+        <th>木</th>
+        <th>金</th>
+        <th class="saturday">土</th>
+      </tr>
+      <tr>
+        <!-- 日にちを表示 -->
+        <% (0...@firstDate.wday).each do %>
+          <td></td>
+        <% end %>
+
+        <% (@firstDate.day..@lastDate.day).each do |day| %>
+          <% date = "#{@firstDate.year}-#{@firstDate.month}-#{day}" %>
+          <% if @week[day] == 0 %> <!-- 日曜日のとき -->
+            </tr><tr>
+            <td class='sunday'><%= link_to "#{day}", "/plans/#{date}" %></td>
+          <% elsif @week[day] == 6 %> <!-- 土曜日のとき -->
+            <td class='saturday'><%= link_to "#{day}", "/plans/#{date}" %></td>
+          <% else %>
+            <td><%= link_to "#{day}", "/plans/#{date}" %></td>
+          <% end %>
+        <% end %>
+
+        <% (@week[@lastDate.day] + 1..6).each do %>
+          <td></td>
+        <% end %>
+
+      </tr>
+    </table>
+
+    <%= form_tag "/plans/changeMonths", method: :get, class: "changeMonths" do %>
+      <!-- 年を選択 -->
+      <% thisYear = Time.now.year %>
+      <%= select_tag "year", options_for_select((thisYear-1..thisYear+2).to_a, selected: thisYear),
+        class: "option" %>
+      年
+      <!-- 月を選択 -->
+      <%= select_tag "month", options_for_select((1..12).to_a), class: "option" %>
+      月のカレンダーを見る
+      <%= submit_tag "表示", class: "btn" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="rightBlock">
+  <div class="dayPlan">
+    <!-- 選択された日にちを表示(デフォルトは今日の日にち) -->
+    <p id='selectedDay'><%= @selectedDate.month %>月<%= @selectedDate.day %>日の予定</p>
+
+    <div id='planDetail'>
+      <!-- データベース内の情報を出力 -->
+      <% if @plans.length == 0 %>
+        <p>予定はありません</p>
+      <% else %>
+        <ul>
+        <% @plans.each do |plan| %>
+          <li>
+            <%= "#{plan.start_time.strftime("%H:%M")} ~ #{plan.end_time.strftime("%H:%M")}" %>
+            &nbsp;
+            <%= link_to "#{plan.title}", "/plans/#{plan.date}/#{plan.id}" %>
+          </li>
+        <% end %>
+        </ul>
+      <% end %>
+    </div>
+
+    <% date = "#{@selectedDate.year}-#{@selectedDate.month}-#{@selectedDate.day}" %>
+    <%= form_tag "/plans/#{date}/new", method: :get, class: "addForm" do %>
+      <%= submit_tag "新しい予定を追加する", class: "btn" %>
+    <% end %>
+  </div>
+</div>

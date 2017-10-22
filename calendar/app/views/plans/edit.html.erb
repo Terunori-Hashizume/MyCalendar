@@ -1,0 +1,44 @@
+<!-- エラーがあった場合、表示 -->
+<% if @plan.errors.present? %>
+<div id="errors">
+  <h3>エラーがあります</h3>
+  <ul>
+    <% @plan.errors.full_messages.each do |message|%>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<h2>編集画面</h2>
+
+<%= form_tag "/plans/#{@plan.date}/#{@plan.id}", method: :patch, class: "form" do%>
+  <%= label_tag "日程: " %>
+  <%= @plan.date.strftime("%Y年 %-m月 %-d日") %>
+  <%= hidden_field_tag :date, "#{@plan.date}" %>
+  <br><br>
+
+  <%= label_tag "タイトル: " %>
+  <%= text_field_tag :title, @plan.title %>
+  <br><br>
+
+  <%= label_tag "開始時刻: " %>
+  <%= select_tag "start_hour", options_for_select((0..23).to_a, selected: @plan.start_time.strftime("%-H")), class: "option" %>
+  時
+  <%= select_tag "start_min", options_for_select([0,5,10,15,20,25,30,35,40,45,50,55], selected: @plan.start_time.strftime("%-M")), class: "option" %>
+  分
+  <br><br>
+
+  <%= label_tag "終了時刻: " %>
+  <%= select_tag "end_hour", options_for_select((0..23).to_a, selected: @plan.end_time.strftime("%-H")), class: "option" %>
+  時
+  <%= select_tag "end_min", options_for_select([0,5,10,15,20,25,30,35,40,45,50,55], selected: @plan.end_time.strftime("%-M")), class: "option" %>
+  分
+  <br><br>
+
+  <%= label_tag "詳細: " %>
+  <%= text_area_tag :detail, @plan.detail, placeholder: "何かあれば入力してください" %>
+  <br><br>
+
+  <%= submit_tag "予定を更新する", class: "btn"%>
+<% end %>

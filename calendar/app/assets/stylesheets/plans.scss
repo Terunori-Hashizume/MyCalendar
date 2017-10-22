@@ -1,0 +1,216 @@
+// Place all the styles related to the plans controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// index
+.leftBlock {
+  width: 550px;
+  height: 550px;
+  background-color: #eeeeee;
+  float: left;
+  margin-right: 5px;
+}
+
+.calender h2 {
+  font-size: 30px;
+  font-family: serif;
+  text-align: center;
+  margin: 15px auto 10px;
+}
+
+.calender table {
+  width: 500px;
+  margin: 10px auto;
+}
+
+.calender table th,
+.calender table td {
+  border: 1px solid #bbbbbb;
+}
+
+.calender a {
+ display: block;
+ height: 50px;
+ color: inherit;
+ vertical-align: top;
+}
+
+a:link, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: #dddddd;
+}
+
+.sunday {
+  color: red;
+}
+
+.saturday {
+  color: blue;
+}
+
+.changeMonths {
+  text-align: center;
+}
+
+.yearAndMonth {
+  display: inline-block;
+}
+
+.option {
+  background-color: #ffffff;
+  height: 20px;
+}
+
+.option:focus {
+  outline-color: #ffb6c1;
+}
+
+.btn {
+  height: 25px;
+  border-radius: 5px;
+  background-color: #ffe4e1;
+  font-weight: bold;
+  font-family: serif;
+  padding: 0 5px 0;
+  opacity: 0.8;
+  display: inline-block;
+}
+
+.btn:focus {
+  outline-color: #ffb6c1;
+}
+
+.rightBlock {
+  width: 350px;
+  height: 550px;
+  background-color: #eeeeee;
+  float: left;
+  margin-left: 5px;
+}
+
+.dayPlan {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.dayPlan p {
+  font-size: 20px;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+#planDetail {
+  background-color: #ffe4e1;
+  height: 400px;
+  width: 300px;
+  border: 1px solid #dddddd;
+  margin: 0 auto 10px;;
+}
+
+#planDetail p {
+  font-size: 15px;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+#planDetail li {
+  font-size: 15px;
+  font-family: sans-serif;
+  list-style: none;
+  text-align: left;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+ul a {
+  color: inherit;
+}
+
+.addForm {
+  float: right;
+}
+
+#title {
+  height: 21px;
+}
+
+#title:focus, #detail:focus {
+  outline-color: #ffb6c1;
+}
+
+//show, new, edit
+h2 {
+  font-size: 25px;
+  text-align: center;
+}
+
+// show
+#errors {
+  border: 2px solid #8b0000;
+  width: 400px;
+  background-color: #f08080;
+  opacity: 0.8;
+  color: #ffffff;
+  text-align: center;
+  margin: 10px auto;
+}
+
+#errors ul {
+  text-align: left;
+  padding-left: 70px;
+}
+
+.showDetail {
+  width: 300px;
+  padding: 0 10px 20px;
+  margin: 0 auto;
+}
+
+#edit {
+  border: 1px solid #2f4f4f;
+  border-radius: 5px;
+  width: 50px;
+  padding: 5px;
+  background-color: #008b8b;
+  opacity: 0.9;
+  color: #eeeeee;
+  font-size: 15px;
+  font-family: serif;
+  text-align: center;
+  margin-right: 10px;
+}
+
+#delete {
+  border: 1px solid #8b0000;
+  border-radius: 5px;
+  width: 50px;
+  padding: 5px;
+  background-color: #f08080;
+  opacity: 0.9;
+  color: #eeeeee;
+  font-size: 15px;
+  font-family: serif;
+  text-align: center;
+  margin-right: 10px;
+}
+
+#return {
+  color: #2f4f4f;
+  font-size: 20px;
+  margin: 0 70px 0;
+}
+
+#return a {
+  color: inherit;
+}
+
+// form (new, edit)
+.form {
+  width: 300px;
+  margin: 0 auto 30px;
+}
